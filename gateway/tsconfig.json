@@ -1,9 +1,15 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
-    "module": "commonjs",
+    "target": "ES2020",                 // Modern JS features
+    "module": "CommonJS",               // Compile to CommonJS for Node runtime
+    "rootDir": "src",
     "outDir": "dist",
+    "moduleResolution": "node",
+    "esModuleInterop": true,            // Allows 'import x from "y"' with CommonJS modules
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "esModuleInterop": true
-  }
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*"]
 }

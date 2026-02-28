@@ -1,4 +1,4 @@
-import axios from "axios";
+const axios = require("axios");
 
 export async function checkRateLimit(userId: string) {
   const res = await axios.post("http://rate-limiter:8080/check", {

@@ -16,6 +16,10 @@ func main() {
 
 	handler := api.NewHandler(redisClient, producer)
 
+	r.GET("/health", func(c *gin.Context) {
+		c.JSON(200, gin.H{"status": "ok"})
+	})
+
 	r.POST("/check", handler.CheckRateLimit)
 
 	r.Run(":8080")

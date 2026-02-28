@@ -1,18 +1,22 @@
-import { Router } from "express";
-import { checkRateLimit } from "../services/rateLimiterClient";
+import type { Request, Response } from "express";
+
+const { Router } = require("express");
+const { redisClient } = require("../config/redis");
 
 const router = Router();
 
-router.post("/", async (req, res) => {
-  const { user_id } = req.body;
+// Use the type annotations inline
+router.get("/:userId", async (req: Request, res: Response) => {
+  const { userId } = req.params;
 
-  const result = await checkRateLimit(user_id);
+  // Redis values may be null, so convert to numbers
+  const totalStr = await redisClient.get(`analytics:${userId}:total`);
+  const blockedStr = await redisClient.get(`analytics:${userId}:blocked`);
 
-  if (!result.allowed) {
-    return res.status(429).json({ message: "Rate limit exceeded" });
-  }
+  const total = totalStr ? Number(totalStr) : 0;
+  const blocked = blockedStr ? Number(blockedStr) : 0;
 
-  res.json({ message: "Request allowed" });
+  res.json({ total, blocked });
 });
 
-export default router;
+module.exports = router;

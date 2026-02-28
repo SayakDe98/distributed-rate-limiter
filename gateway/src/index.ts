@@ -1,6 +1,6 @@
-import express from "express";
-import proxy from "./routes/proxy";
-import analytics from "./routes/analytics";
+const express = require("express");
+const proxy = require("./routes/proxy");
+const analytics = require("./routes/analytics");
 
 const app = express();
 app.use(express.json());

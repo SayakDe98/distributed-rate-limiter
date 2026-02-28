@@ -1,20 +1,12 @@
-import { createClient } from "redis";
+const { createClient } = require("redis");
 
-const client = createClient({ url: "redis://redis:6379" });
-client.connect();
+export const redisClient = createClient({ url: "redis://redis:6379" });
+redisClient.connect();
 
 export async function getCached(key: string) {
-  return client.get(key);
+  return redisClient.get(key);
 }
 
 export async function setCached(key: string, value: string) {
-  await client.set(key, value, { EX: 30 });
+  await redisClient.set(key, value, { EX: 30 });
 }
-
-// import { createClient } from "redis";
-
-// export const redisClient = createClient({
-//   url: "redis://redis:6379",
-// });
-
-// redisClient.connect();
