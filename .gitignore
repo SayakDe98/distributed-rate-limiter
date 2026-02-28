@@ -1,0 +1,59 @@
+# ===============================
+# Go
+# ===============================
+/rate-limiter/bin/
+/rate-limiter/*.exe
+/rate-limiter/*.out
+/rate-limiter/vendor/
+**/*.test
+*.exe
+*.out
+*.test
+*.prof
+
+# ===============================
+# Node.js / TypeScript
+# ===============================
+/gateway/node_modules/
+**/dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.tsbuildinfo
+
+# ===============================
+# Environment
+# ===============================
+.env
+.env.local
+.env.*.local
+
+# ===============================
+# Docker
+# ===============================
+*.pid
+*.log
+docker-compose.override.yml
+**/Dockerfile.old
+**/.dockerignore
+
+# ===============================
+# IDE / Editor
+# ===============================
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# ===============================
+# MacOS
+# ===============================
+*.DS_Store
+
+# ===============================
+# Misc
+# ===============================
+*.bak
+*.tmp
